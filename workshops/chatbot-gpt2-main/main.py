@@ -3,7 +3,7 @@ from langchain.llms import HuggingFaceHub
 import os
 
 # Replace 'your_hugging_face_token' with your actual Hugging Face token
-hf_token = os.getenv('HUGGINGFACEHUB_API_TOKEN', 'Hugging Face Token')
+hf_token = os.getenv('HUGGINGFACEHUB_API_TOKEN', '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')
 
 # Initialize the HuggingFace model
 repo_id = "openai-community/gpt2"  # Ensure this is the correct repository ID
@@ -18,8 +18,15 @@ user_input = st.text_input("You:", "Type your message here...")
 if st.button("Send"):
     if user_input:
         try:
+            # Generate response
             response = llm(user_input)
-            st.write(f"Bot: {response['text']}")
+            
+            # Check if the response is a string or a dictionary
+            if isinstance(response, dict):
+                st.write(f"Bot: {response.get('text', 'No response text found.')}")
+            else:
+                st.write(f"Bot: {response}")
+        
         except Exception as e:
             st.error(f"Error: {str(e)}")
     else:
