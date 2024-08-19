@@ -1,0 +1,5 @@
+gradio
+groq
+openai-whisper
+pyttsx3
+gtts
