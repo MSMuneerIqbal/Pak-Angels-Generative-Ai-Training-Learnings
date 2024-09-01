@@ -1,6 +1,5 @@
 streamlit
 vosk
-sounddevice
 numpy
 groq
 pyaudio
