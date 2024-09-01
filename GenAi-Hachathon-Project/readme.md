@@ -1,4 +1,7 @@
 # AI Based English Speaking Practice Bot
+## Deployed On Hugging Face Live Link
+[Visit this Link]([https://www.google.com](https://huggingface.co/spaces/Muneer-Iqbal/buddy-speaking))
+
 
 ## Overview
 
