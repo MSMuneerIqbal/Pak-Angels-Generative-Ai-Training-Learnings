@@ -3,5 +3,5 @@ vosk
 sounddevice
 numpy
 groq
-pip install pyaudio
+pyaudio
 
