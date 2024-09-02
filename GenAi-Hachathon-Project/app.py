@@ -8,7 +8,7 @@ import nltk
 from nltk.corpus import wordnet
 from deep_translator import GoogleTranslator
 
-# Download wordnet if not already downloaded
+# Ensure wordnet data is downloaded
 nltk.download('wordnet')
 
 # Set up Groq API client
@@ -18,16 +18,19 @@ client = Groq(api_key="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"
 model = whisper.load_model("base")
 
 def text_to_speech(text):
-    tts = gTTS(text=text, lang='en')
-    audio_file_path = "output.mp3"
-    tts.save(audio_file_path)
-    return audio_file_path
+    try:
+        tts = gTTS(text=text, lang='en')
+        audio_file_path = "output.mp3"
+        tts.save(audio_file_path)
+        return audio_file_path
+    except Exception as e:
+        return f"Error in TTS: {str(e)}"
 
 def chatbot(audio):
     try:
         if audio is None:
             return "Error: No audio input provided."
-        
+
         audio_data, sample_rate = librosa.load(audio, sr=16000)
 
         if not np.issubdtype(audio_data.dtype, np.floating):
@@ -49,7 +52,7 @@ def chatbot(audio):
 
         return response_text
     except Exception as e:
-        return f"Error: {str(e)}"
+        return f"Error in chatbot: {str(e)}"
 
 def get_synonyms(word):
     try:
@@ -65,7 +68,7 @@ def get_synonyms(word):
 
         return f"English Synonyms: {', '.join(english_synonyms)}", f"Urdu Synonyms: {', '.join(urdu_synonyms)}"
     except Exception as e:
-        return f"An error occurred: {e}", ""
+        return f"Error in synonym finder: {str(e)}", ""
 
 def build_interface():
     with gr.Blocks() as demo:
