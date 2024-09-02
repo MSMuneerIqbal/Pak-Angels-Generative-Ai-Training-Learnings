@@ -12,7 +12,7 @@ from deep_translator import GoogleTranslator
 nltk.download('wordnet')
 
 # Set up Groq API client
-client = Groq(api_key="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")
+client = Groq(api_key="past your Groq api key here")
 
 # Load Whisper model
 model = whisper.load_model("base")
